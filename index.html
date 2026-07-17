@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dheeraj weds Neha — Shubh Vivah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Cinzel:wght@500;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --maroon:#7B1E3A;
+    --deep-maroon:#4C1220;
+    --gold:#C6952C;
+    --gold-light:#EED9A6;
+    --cream:#FBF3E7;
+    --ivory:#FFFDF9;
+    --forest:#33503F;
+    --text:#3A2418;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--text);
+    font-family:'Cormorant Garamond', serif;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  .eyebrow{
+    font-family:'Cinzel', serif;
+    letter-spacing:.28em;
+    font-size:.72rem;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+  }
+
+  /* ---------- toran / bells divider ---------- */
+  .toran{
+    display:flex;
+    justify-content:center;
+    gap:2.2rem;
+    padding:.6rem 0 1.2rem;
+  }
+  .toran span{
+    display:inline-block;
+    width:9px; height:9px;
+    background:var(--gold);
+    border-radius:0 0 50% 50%;
+    position:relative;
+    animation:sway 3.4s ease-in-out infinite;
+    transform-origin:top center;
+  }
+  .toran span:nth-child(odd){ animation-delay:.4s; }
+  .toran span::before{
+    content:"";
+    position:absolute;
+    top:-14px; left:50%;
+    width:1px; height:14px;
+    background:var(--gold);
+    transform:translateX(-50%);
+  }
+  @keyframes sway{
+    0%,100%{ transform:rotate(-6deg); }
+    50%{ transform:rotate(6deg); }
+  }
+
+  /* ---------- falling petals ---------- */
+  .petals{ position:fixed; inset:0; pointer-events:none; z-index:5; overflow:hidden; }
+  .petal{
+    position:absolute; top:-5%;
+    width:8px; height:8px;
+    background:var(--gold);
+    opacity:.5;
+    border-radius:50% 0 50% 50%;
+    animation:fall linear infinite;
+  }
+  @keyframes fall{
+    to{ transform:translateY(110vh) rotate(300deg); }
+  }
+
+  section{
+    width:100%;
+    padding-bottom:2.4rem;
+    text-align:center;
+    border-bottom:1px solid var(--gold-light);
+  }
+  section:last-of-type{ border-bottom:none; }
+
+  .banner{
+    width:100%;
+    display:block;
+    object-fit:cover;
+  }
+  .banner.tall{ max-height:78vh; object-fit:cover; object-position:center top; }
+  .banner.mid{ max-height:52vh; }
+  .banner.short{ max-height:40vh; }
+
+  .content{
+    max-width:520px;
+    margin:0 auto;
+    padding:2rem 1.5rem 0;
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .8s ease, transform .8s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- SPLASH ---------- */
+  #splash{ padding-top:2.4rem; background:var(--cream); }
+  #splash img{ width:80%; max-width:320px; margin:0 auto; border-radius:6px; box-shadow:0 18px 40px rgba(76,18,32,.16); }
+  #splash .content{ padding-top:1.2rem; }
+  #splash h1{
+    font-family:'Cinzel', serif;
+    font-size:1.15rem;
+    letter-spacing:.14em;
+    color:var(--maroon);
+  }
+  #splash p.sub{ margin-top:.5rem; color:var(--forest); font-size:1.02rem; letter-spacing:.03em;}
+
+  /* ---------- HERO ---------- */
+  #hero{ padding-bottom:3rem; }
+  #hero .content{ padding-top:1.6rem; }
+  #hero h1.names{
+    font-family:'Mrs Saint Delafield', cursive;
+    font-size:3.4rem;
+    line-height:1.05;
+    color:var(--maroon);
+  }
+  #hero .amp{
+    display:block;
+    font-family:'Yatra One', cursive;
+    font-size:1.25rem;
+    color:var(--gold);
+    margin:.35rem 0;
+  }
+  #hero .date-line{
+    margin-top:.9rem;
+    font-family:'Cinzel', serif;
+    font-size:.92rem;
+    letter-spacing:.12em;
+    color:var(--text);
+  }
+
+  /* countdown */
+  .countdown{
+    margin-top:1.5rem;
+    display:flex;
+    justify-content:center;
+    gap:.7rem;
+    flex-wrap:wrap;
+  }
+  .countdown .box{
+    background:var(--ivory);
+    border:1px solid var(--gold);
+    border-radius:8px;
+    width:62px;
+    padding:.5rem .2rem;
+    box-shadow:0 4px 14px rgba(76,18,32,.08);
+  }
+  .countdown .box .num{
+    font-family:'Cinzel', serif;
+    font-size:1.25rem;
+    font-weight:700;
+    color:var(--maroon);
+    display:block;
+  }
+  .countdown .box .lbl{
+    font-size:.6rem;
+    letter-spacing:.1em;
+    color:var(--forest);
+    text-transform:uppercase;
+  }
+
+  /* ---------- FAMILY / INVITE TEXT ---------- */
+  #family{ padding-bottom:3rem; }
+  #family .invite-text{
+    font-size:1.15rem;
+    line-height:1.7;
+    color:var(--text);
+  }
+  #family .couple-name{
+    font-family:'Mrs Saint Delafield', cursive;
+    font-size:2.1rem;
+    color:var(--maroon);
+    display:block;
+    margin:.4rem 0 0;
+  }
+  #family .parents{
+    font-size:1rem;
+    color:var(--forest);
+    margin-top:.1rem;
+  }
+  #family .with-word{
+    font-family:'Yatra One', cursive;
+    color:var(--gold);
+    font-size:1.15rem;
+    margin:.8rem 0;
+    display:block;
+  }
+
+  /* ---------- EVENTS ---------- */
+  #events{ padding-bottom:3rem; }
+  #events .content{ padding-top:1.8rem; }
+  #events h2{
+    font-family:'Cinzel', serif;
+    color:var(--maroon);
+    font-size:1.35rem;
+    letter-spacing:.09em;
+    margin-bottom:1.6rem;
+  }
+  .event-card{
+    background:var(--ivory);
+    border:1px solid var(--gold-light);
+    border-radius:14px;
+    padding:1.25rem 1.35rem;
+    margin-bottom:1rem;
+    text-align:left;
+    box-shadow:0 6px 18px rgba(76,18,32,.06);
+  }
+  .event-card .ev-tag{
+    font-family:'Cinzel', serif;
+    font-size:.6rem;
+    letter-spacing:.13em;
+    color:var(--gold);
+    text-transform:uppercase;
+  }
+  .event-card .ev-name{
+    font-family:'Yatra One', cursive;
+    color:var(--maroon);
+    font-size:1.3rem;
+    margin-top:.15rem;
+  }
+  .event-card .ev-detail{
+    margin-top:.5rem;
+    font-size:1rem;
+    color:var(--text);
+    line-height:1.55;
+  }
+  .event-card .ev-detail strong{ color:var(--forest); }
+  .event-card .map-link{
+    display:inline-block;
+    margin-top:.6rem;
+    font-family:'Cinzel', serif;
+    font-size:.66rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--maroon);
+    text-decoration:none;
+    border-bottom:1px solid var(--maroon);
+    padding-bottom:2px;
+  }
+
+  /* ---------- RSVP / CLOSING ---------- */
+  #rsvp .content{ padding-top:1.8rem; padding-bottom:.5rem; }
+  #rsvp h2{
+    font-family:'Mrs Saint Delafield', cursive;
+    color:var(--maroon);
+    font-size:2.2rem;
+  }
+  #rsvp p.msg{
+    margin:.7rem 0 1.5rem;
+    font-size:1.05rem;
+    color:var(--text);
+    line-height:1.6;
+  }
+  .rsvp-btns{
+    display:flex;
+    flex-direction:column;
+    gap:.7rem;
+    align-items:center;
+  }
+  .wa-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    background:var(--maroon);
+    color:var(--ivory);
+    font-family:'Cinzel', serif;
+    font-size:.75rem;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    text-decoration:none;
+    padding:.75rem 1.6rem;
+    border-radius:30px;
+    box-shadow:0 6px 18px rgba(76,18,32,.25);
+    transition:transform .25s ease;
+  }
+  .wa-btn:hover{ transform:translateY(-2px); }
+
+  footer{
+    background:var(--deep-maroon);
+    color:var(--gold-light);
+    text-align:center;
+    padding:2.4rem 1rem 2rem;
+    border-bottom:none;
+  }
+  footer .fnames{
+    font-family:'Mrs Saint Delafield', cursive;
+    font-size:1.6rem;
+    color:var(--gold);
+  }
+  footer .fsub{
+    font-size:.76rem;
+    letter-spacing:.13em;
+    margin-top:.3rem;
+    color:var(--gold-light);
+    opacity:.85;
+    font-family:'Cinzel', serif;
+    text-transform:uppercase;
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--maroon);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<div class="petals" id="petals"></div>
+
+<!-- ============ SPLASH ============ -->
+<section id="splash">
+  <img src="images/ganesh-hero.jpg" alt="Shri Ganesh blessing, haldi hands and the couple at the sacred fire">
+  <div class="content">
+    <p class="eyebrow">|| Shri Ganeshaya Namah ||</p>
+  </div>
+</section>
+
+<!-- ============ HERO ============ -->
+<section id="hero">
+  <img class="banner tall" src="images/ganesh-arch.jpg" alt="Decorative floral arch with Shri Ganesh and the couple">
+  <div class="content reveal">
+    <p class="eyebrow">You are lovingly invited</p>
+    <h1 class="names">Dheeraj</h1>
+    <span class="amp">|| शुभ विवाह ||</span>
+    <h1 class="names">Neha</h1>
+    <p class="date-line">24 – 26 November 2026 · Dausa &amp; Tunga, Rajasthan</p>
+
+    <div class="countdown" id="countdown">
+      <div class="box"><span class="num" id="cd-days">00</span><span class="lbl">Days</span></div>
+      <div class="box"><span class="num" id="cd-hours">00</span><span class="lbl">Hrs</span></div>
+      <div class="box"><span class="num" id="cd-mins">00</span><span class="lbl">Min</span></div>
+      <div class="box"><span class="num" id="cd-secs">00</span><span class="lbl">Sec</span></div>
+    </div>
+    <div class="toran"><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+</section>
+
+<!-- ============ FAMILY / INVITE ============ -->
+<section id="family">
+  <img class="banner mid" src="images/frame-blank1.jpg" alt="Floral border with Shri Ganesh and the couple walking together">
+  <div class="content reveal">
+    <p class="eyebrow">Together with their families</p>
+    <p class="invite-text" style="margin-top:.9rem;">We joyfully invite you to bless the union of</p>
+    <span class="couple-name">Dheeraj</span>
+    <p class="parents">
+      <!-- EDIT: groom's parents' names -->
+      S/o Sh. Nathulal Sharma &amp; Smt. Neeru Devi
+    </p>
+    <span class="with-word">weds</span>
+    <span class="couple-name">Neha</span>
+    <p class="parents">
+      <!-- EDIT: replace placeholder bride's parents' names here once confirmed -->
+      D/o Sh. Motu &amp; Smt. Patlu
+    </p>
+  </div>
+</section>
+
+<!-- ============ EVENTS ============ -->
+<section id="events">
+  <img class="banner mid" src="images/ganesh-peacock.jpg" alt="Peacock, elephant and Shri Ganesh amid floral courtyard">
+  <div class="content reveal">
+    <h2>Celebration Schedule</h2>
+
+    <div class="event-card">
+      <div class="ev-tag">24 November · Monday</div>
+      <div class="ev-name">Lagan</div>
+      <div class="ev-detail">
+        <strong>Time:</strong> 2:00 PM onwards<br>
+        <strong>Venue:</strong> Ashoka Avenue, Marriage Garden<br>
+        (Kesar Gulab Hotel ke saamne), Jamat Lalsot, Dausa
+      </div>
+      <a class="map-link" href="https://maps.app.goo.gl/PH73LjZCcGkUkn7t8" target="_blank" rel="noopener">Get Directions →</a>
+    </div>
+
+    <div class="event-card">
+      <div class="ev-tag">25 November · Tuesday</div>
+      <div class="ev-name">Haldi</div>
+      <div class="ev-detail">
+        <strong>Time:</strong> 12:00 PM – 3:00 PM<br>
+        <strong>Venue:</strong> Nij Nivaas (Groom's Residence)<br>
+        Jamat Lalsot, Dausa
+      </div>
+      <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Jamat%20Lalsot%2C%20Dausa" target="_blank" rel="noopener">View Area on Map →</a>
+    </div>
+
+    <div class="event-card">
+      <div class="ev-tag">25 November · Tuesday, Evening</div>
+      <div class="ev-name">Mahila Sangeet</div>
+      <div class="ev-detail">
+        <strong>Time:</strong> 7:00 PM onwards<br>
+        <strong>Venue:</strong> Nij Nivaas (Groom's Residence)<br>
+        Jamat Lalsot, Dausa
+      </div>
+      <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Jamat%20Lalsot%2C%20Dausa" target="_blank" rel="noopener">View Area on Map →</a>
+    </div>
+
+    <div class="event-card">
+      <div class="ev-tag">26 November · Wednesday</div>
+      <div class="ev-name">Baraat &amp; Varmala</div>
+      <div class="ev-detail">
+        <strong>Time:</strong> 2:00 PM onwards<br>
+        <strong>Venue:</strong> Nij Nivaas (Bride's Residence)<br>
+        Tunga
+      </div>
+      <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Tunga%2C%20Rajasthan" target="_blank" rel="noopener">View Area on Map →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RSVP / CLOSING ============ -->
+<section id="rsvp">
+  <img class="banner mid" src="images/couple-walking.jpg" alt="Bride and groom walking through a palace garden">
+  <div class="content reveal">
+    <h2>Awaiting your presence</h2>
+    <p class="msg">Your blessings and company will make our celebration truly complete. Kindly confirm your presence with us.</p>
+    <div class="rsvp-btns">
+      <a class="wa-btn" href="https://wa.me/919079036923?text=Hi!%20Confirming%20my%20presence%20for%20Dheeraj%20%26%20Neha's%20wedding." target="_blank" rel="noopener">RSVP on WhatsApp — Contact 1</a>
+      <a class="wa-btn" href="https://wa.me/918290383182?text=Hi!%20Confirming%20my%20presence%20for%20Dheeraj%20%26%20Neha's%20wedding." target="_blank" rel="noopener">RSVP on WhatsApp — Contact 2</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="toran"><span></span><span></span><span></span></div>
+  <div class="fnames">Dheeraj &amp; Neha</div>
+  <div class="fsub">With love &amp; blessings of both families</div>
+</footer>
+
+<script>
+  // ---- Countdown to Lagan: 24 Nov 2026, 2:00 PM IST ----
+  const target = new Date("2026-11-24T14:00:00+05:30").getTime();
+  function tick(){
+    const now = Date.now();
+    let diff = target - now;
+    if(diff < 0) diff = 0;
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff / (1000*60*60)) % 24);
+    const m = Math.floor((diff / (1000*60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // ---- Scroll reveal ----
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  }, {threshold:.15});
+  reveals.forEach(el=>io.observe(el));
+
+  // ---- Falling petals (ambient) ----
+  const petalHost = document.getElementById('petals');
+  const PETAL_COUNT = 14;
+  for(let i=0;i<PETAL_COUNT;i++){
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.animationDuration = (9 + Math.random()*8) + 's';
+    p.style.animationDelay = (Math.random()*10) + 's';
+    p.style.opacity = (0.25 + Math.random()*0.35).toFixed(2);
+    petalHost.appendChild(p);
+  }
+</script>
+
+</body>
+</html>
